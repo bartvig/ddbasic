@@ -940,6 +940,19 @@ function ddbasic_preprocess_ting_object(&$vars) {
           unset($content['group_material_details']);
         }
 
+        if (isset($content['group_oembed']) && $content['group_oembed']) {
+          $vars['content']['group-oembed'] = array(
+            '#prefix' => '<div class="ting-object-wrapper">',
+            '#suffix' => '</div>',
+            'content' => array(
+              '#prefix' => '<div class="ting-object-inner-wrapper">',
+              '#suffix' => '</div>',
+              'details' => $content['group_oembed'],
+            ),
+          );
+          unset($content['group_oembed']);
+        }
+
         if (isset($content['group_holdings_available']) && $content['group_holdings_available']) {
           $vars['content']['holdings-available'] = array(
             '#prefix' => '<div class="ting-object-wrapper">',
